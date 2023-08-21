@@ -7,6 +7,7 @@ interface FieldDisplayConfig {
   [fieldName: string]: {
     label: string;
     stringify?: boolean;
+    isCheckBox?: true;
   };
 }
 
@@ -60,13 +61,29 @@ const Card: React.FC<CardProps> = ({
           const label = fieldConfig.label || field;
           const shouldStringify = fieldConfig.stringify || false;
 
+          if (fieldConfig.isCheckBox) {
+            return (
+              <div key={index} className="mb-1">
+                <label>
+                  {label}:
+                  <input 
+                    type="checkbox" 
+                    checked={!!fieldValue} 
+                    readOnly
+                  />
+                </label>
+              </div>
+            );
+          }
+        
+          // Renderizado estándar si no es un checkbox
           return (
             <p key={index} className="mb-1">
-            {shouldStringify ? label : formattedFieldName}:{" "}
+              {shouldStringify ? label : formattedFieldName}:{" "}
               {typeof fieldValue === "object"
                 ? JSON.stringify(fieldValue)
                 : fieldValue}
-            </p> //
+            </p> 
           );
         })}
       </div>
