@@ -1,26 +1,27 @@
 import React from "react";
-//Interface for Nested Objects 
+//Interface para objetos anidados
 type NestedObject = {
-  [key: string]: string | NestedObject; //{(key:string) : value:string or {(key:string) : value:string or {...}}}
+  [key: string]: string | NestedObject; // de la forma {(key:string) : value:string or {(key:string) : value:string or {...}}}
 }
+//Interfaz para ver la forma en que mostraremos los datos en la crad
 interface FieldDisplayConfig {
-  [fieldName: string]: {
-    label: string;
-    stringify?: boolean;
-    isCheckBox?: boolean;
+  [fieldName: string]: { 
+    label: string; //Reemplaza el label de la Api por el que indiquemos (ej 'id' => 'ID del User')
+    stringify?: boolean; //Le decimos sí debemos mostrar el label como viene en API o personalizado
+    isCheckBox?: boolean; //Para ver si el campo es CheckBox
   };
 }
-
+//Interfaz para las props de la card, incluye título, datos de la Api; qué datos mostraremos, etc.
 interface CardProps {
   title: string;
   data: NestedObject;
   fieldsToShow: string[];
-  fieldDisplayConfig?: FieldDisplayConfig; // Nueva prop para configuración de visualización
+  fieldDisplayConfig?: FieldDisplayConfig; 
   className?: string;
 }
-//Converts 'camelCase' to 'Camel Case' 
+//Convierte 'camelCase' to 'Camel Case'; En caso de que no usemos "FieldDisplayConfig"
 const convertFieldName = (name: string): string => {
-  const words = name.split(/(?=[A-Z])/); // Split by capital letters
+  const words = name.split(/(?=[A-Z])/); // Los separa con regex por Letra Mayus
   const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
   return formattedWords.join(" ");
 };
@@ -29,10 +30,10 @@ const Card: React.FC<CardProps> = ({
   title,
   data,
   fieldsToShow,
-  fieldDisplayConfig = {}, // Valor por defecto: ningún formato especial
+  fieldDisplayConfig = {}, 
   className,
 }) => {
-  //Get nested value (if exist)
+  //Obtiene los objetos anidados (if exist)
   const getNestedFieldValue = (
     obj: NestedObject | undefined,
     path: string[]
@@ -64,12 +65,13 @@ const Card: React.FC<CardProps> = ({
           if (fieldConfig.isCheckBox) {
             return (
               <div key={index} className="mb-1">
-                <label className="text-sm">
+                <label>
                   {label}:
                   <input 
                     type="checkbox" 
                     checked={!!fieldValue} 
                     readOnly
+                    className="ml-1"
                   />
                 </label>
               </div>
@@ -78,7 +80,7 @@ const Card: React.FC<CardProps> = ({
         
           // Renderizado estándar si no es un checkbox
           return (
-            <p key={index} className="mb-1 text-sm">
+            <p key={index} className="mb-1">
               {shouldStringify ? label : formattedFieldName}:{" "}
               {typeof fieldValue === "object"
                 ? JSON.stringify(fieldValue)

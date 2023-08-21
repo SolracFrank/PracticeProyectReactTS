@@ -58,6 +58,17 @@ const UserCards = () => {
         data={data.company}
         fieldsToShow={["name", "catchPhrase", "bs"]}
       />
+       <Card
+        title="Probando Check"
+        data={data.otro}
+        fieldsToShow={[
+          "state"
+        ]}
+        fieldDisplayConfig={{
+          state: { label: "Estado", stringify: true, isCheckBox: true},
+        }}
+        className="overflow-y-clip"
+      />
     </div>
   );
 };
