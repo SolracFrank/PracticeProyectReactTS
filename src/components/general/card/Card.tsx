@@ -19,7 +19,7 @@ interface CardProps {
   fieldDisplayConfig?: FieldDisplayConfig; 
   className?: string;
 }
-//Convierte 'camelCase' to 'Camel Case'; En caso de que no usemos "FieldDisplayConfig"
+//Convierte 'camelCase' to 'Camel Case'; En caso de que no usemos "FieldDisplayConfig".
 const convertFieldName = (name: string): string => {
   const words = name.split(/(?=[A-Z])/); // Los separa con regex por Letra Mayus
   const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
