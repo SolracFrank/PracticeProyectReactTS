@@ -1,5 +1,6 @@
 import Card from "../general/card/Card";
 import { useQuery } from "react-query";
+// eslint-disable-next-line
 
 const UserCards = () => {
   const idDePrueba = 1;
@@ -37,6 +38,11 @@ const UserCards = () => {
           "sha1",
           "registered",
         ]}
+        fieldDisplayConfig={{
+          uuid: { label: "ID Único", stringify: true },
+          registered: { label: "Registrado", stringify: true },
+          username: { label: "Nombre de usuario", stringify: true },
+        }}
         className="overflow-y-clip"
       />
       <Card

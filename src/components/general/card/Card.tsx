@@ -3,17 +3,32 @@ import React from "react";
 type NestedObject = {
   [key: string]: string | NestedObject; //{(key:string) : value:string or {(key:string) : value:string or {...}}}
 }
+interface FieldDisplayConfig {
+  [fieldName: string]: {
+    label: string;
+    stringify?: boolean;
+  };
+}
+
 interface CardProps {
   title: string;
   data: NestedObject;
   fieldsToShow: string[];
+  fieldDisplayConfig?: FieldDisplayConfig; // Nueva prop para configuración de visualización
   className?: string;
 }
+//Converts 'camelCase' to 'Camel Case' 
+const convertFieldName = (name: string): string => {
+  const words = name.split(/(?=[A-Z])/); // Split by capital letters
+  const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  return formattedWords.join(" ");
+};
 
 const Card: React.FC<CardProps> = ({
   title,
   data,
   fieldsToShow,
+  fieldDisplayConfig = {}, // Valor por defecto: ningún formato especial
   className,
 }) => {
   //Get nested value (if exist)
@@ -38,15 +53,20 @@ const Card: React.FC<CardProps> = ({
       <div className="my-4 w-full h-px bg-slate-500"></div>
       <div>
         {fieldsToShow.map((field, index) => {
+          const formattedFieldName = convertFieldName(field);
           const fieldValue = getNestedFieldValue(data, field.split("."));
+          const fieldConfig = fieldDisplayConfig[field] || {}; // Configuración de visualización para el campo
+
+          const label = fieldConfig.label || field;
+          const shouldStringify = fieldConfig.stringify || false;
 
           return (
             <p key={index} className="mb-1">
-              {field}:{" "}
+            {shouldStringify ? label : formattedFieldName}:{" "}
               {typeof fieldValue === "object"
                 ? JSON.stringify(fieldValue)
                 : fieldValue}
-            </p>
+            </p> //
           );
         })}
       </div>
