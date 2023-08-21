@@ -1,7 +1,7 @@
 import React from "react";
-
+//Interface for Nested Objects 
 interface NestedObject {
-  [key: string]: string | NestedObject;
+  [key: string]: string | NestedObject; //{(key:string) : value:string or {(key:string) : value:string or {...}}}
 }
 interface CardProps {
   title: string;
@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({
   fieldsToShow,
   className,
 }) => {
-
+  //Get nested value
   const getNestedFieldValue = (
     obj: NestedObject | undefined,
     path: string[]
