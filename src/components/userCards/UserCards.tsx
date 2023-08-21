@@ -1,7 +1,9 @@
 import Card from "../general/card/Card";
 import { useQuery } from "react-query";
-// eslint-disable-next-line
 
+// JSON propio https://github.com/SolracFrank/testing/blob/main/db.json
+
+// API placeholder  `https://jsonplaceholder.org/users/${idDePrueba}`
 const UserCards = () => {
   const idDePrueba = 1;
   const getProducts = async () => {
@@ -10,6 +12,7 @@ const UserCards = () => {
     );
     return response.json();
   };
+
   const { data, status } = useQuery("user", getProducts);
 
   if (status == "loading") {
