@@ -23,7 +23,7 @@ const UserCards = () => {
   }
 
   return (
-    <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-4 py-4 overflow-y-scroll">
+    <div className="flex flex-wrap -mx-4">
       <Card
         title="Datos Personales"
         data={data}
@@ -59,13 +59,13 @@ const UserCards = () => {
         fieldsToShow={["name", "catchPhrase", "bs"]}
       />
        <Card
-        title="Probando Check"
+        title="Probando Checkbox"
         data={data.otro}
         fieldsToShow={[
           "state"
         ]}
         fieldDisplayConfig={{
-          state: { label: "Estado", stringify: true, isCheckBox: true},
+          state: { label: "Es donador", stringify: true, isCheckBox: true},
         }}
         className="overflow-y-clip"
       />

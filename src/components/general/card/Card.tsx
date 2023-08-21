@@ -47,9 +47,8 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`md:w-[70vh] p-4 justify-start flex flex-col border-px border-solid
-       border-white shadow-md shadow-gray-400 sm:w-[40vh] bg-white mx-4  space-y-1 
-       ${className}`}
+    className={`flex flex-col p-4 border-px border-solid border-white shadow-md
+     shadow-gray-400 bg-white m-4 space-y-1 flex-grow ${className}`}
     >
       <h4 className=" text-xl">{title}</h4>
       <div className="my-4 w-full h-px bg-slate-500"></div>
