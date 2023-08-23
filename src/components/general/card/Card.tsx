@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       className={`flex flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
-     shadow-gray-400 bg-white m-4 space-y-1 flex-grow  
+     shadow-gray-400 bg-white m-4 space-y-1   w-fit flex-grow
      ${expanded ? "" : "h-fit"} ${className}`}
     >
       <div className="flex justify-between" onClick={toggleExpansion}>
@@ -73,9 +73,9 @@ const Card: React.FC<CardProps> = ({
       <div className="my-4 w-full h-px bg-slate-500"></div>
       {/* Contracción del área bajo la línea segun clic en svg */}
       <div
-        className={`${
-          expanded ? "block" : "hidden"
-        } transition-opacity duration-800`}
+        className={`grid grid-cols-1 gap-1  ${
+          expanded ? "" : "hidden"
+        } transition-opacity duration-800 ${fieldsToShow.length > 4 ? "grid-cols-2" : ""} ${fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`}
       >
         {fieldsToShow.map((field, index) => {
           const formattedFieldName = convertFieldName(field);
@@ -117,4 +117,3 @@ const Card: React.FC<CardProps> = ({
 };
 
 export default Card;
-//me gustaría que las tarjetas dividan su contenido en COLUMS para no mostrar una sola línea, por ejemplo, si hay 7 etiquetas p, pues sí, en 1; pero si son 8, en 2 de 4, si son 13, en 2 de 5 y una de 3, si son 14, si son 21, en 3 de 7
