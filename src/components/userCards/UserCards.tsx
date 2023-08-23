@@ -46,7 +46,7 @@ const UserCards = () => {
           registered: { label: "Registrado", stringify: true },
           username: { label: "Nombre de usuario", stringify: true },
         }}
-        className="overflow-y-clip"
+        className=""
       />
       <Card
         title="Domicilio"
@@ -67,7 +67,7 @@ const UserCards = () => {
         fieldDisplayConfig={{
           state: { label: "Es donador", stringify: true, isCheckBox: true},
         }}
-        className="overflow-y-clip"
+        className="h-fit"
       />
     </div>
   );

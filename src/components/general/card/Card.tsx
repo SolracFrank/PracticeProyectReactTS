@@ -27,7 +27,7 @@ const convertFieldName = (name: string): string => {
   );
   return formattedWords.join(" ");
 };
-
+//Componente pa' la card
 const Card: React.FC<CardProps> = ({
   title,
   data,
@@ -35,7 +35,7 @@ const Card: React.FC<CardProps> = ({
   fieldDisplayConfig = {},
   className,
 }) => {
-  //Definir expansión svg
+  //Definir expansión del icon svg por booleanos
   const [expanded, setExpanded] = useState(true);
   const toggleExpansion = () => {
     setExpanded(!expanded);
@@ -54,22 +54,24 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`flex flex-col p-4 border-px border-solid border-white shadow-md rounded-lg
-     shadow-gray-400 bg-white m-4 space-y-1 flex-grow h-fit ${className}`}
+      className={`flex flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
+     shadow-gray-400 bg-white m-4 space-y-1 flex-grow  
+     ${expanded ? "" : "h-fit"} ${className}`}
     >
       <div className="flex justify-between" onClick={toggleExpansion}>
-        <h4 className=" text-xl">{title}</h4>
+        <h4 className="text-xl">{title}</h4>
         <h1>
           <svg
             width="30"
             height="30"
-            style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG
+            style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG 
           >
             <polygon points="15,20 5,10 25,10" fill="black" />
           </svg>
         </h1>
       </div>
       <div className="my-4 w-full h-px bg-slate-500"></div>
+      {/* Contracción del área bajo la línea segun clic en svg */}
       <div
         className={`${
           expanded ? "block" : "hidden"
@@ -82,7 +84,7 @@ const Card: React.FC<CardProps> = ({
 
           const label = fieldConfig.label || field;
           const shouldStringify = fieldConfig.stringify || false;
-
+          //Renderizado si es checkbox
           if (fieldConfig.isCheckBox) {
             return (
               <div key={index} className="mb-1">
@@ -99,7 +101,7 @@ const Card: React.FC<CardProps> = ({
             );
           }
 
-          // Renderizado estándar si no es un checkbox
+          // Renderizado si no es un checkbox
           return (
             <p key={index} className="mb-1">
               {shouldStringify ? label : formattedFieldName}:{" "}
@@ -115,3 +117,4 @@ const Card: React.FC<CardProps> = ({
 };
 
 export default Card;
+//me gustaría que las tarjetas dividan su contenido en COLUMS para no mostrar una sola línea, por ejemplo, si hay 7 etiquetas p, pues sí, en 1; pero si son 8, en 2 de 4, si son 13, en 2 de 5 y una de 3, si son 14, si son 21, en 3 de 7
