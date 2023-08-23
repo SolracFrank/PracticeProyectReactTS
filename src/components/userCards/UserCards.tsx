@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 
 // API placeholder  `https://jsonplaceholder.org/users/${idDePrueba}`
 const UserCards = () => {
-  const idDePrueba = 1;
+  const idDePrueba = 2;
   const getProducts = async () => {
     const response = await fetch(
       `https://jsonplaceholder.org/users/${idDePrueba}`
@@ -23,11 +23,20 @@ const UserCards = () => {
   }
 
   return (
-    <div className="flex flex-wrap -mx-4">
+    <div className="grid grid-cols-3 gap-6 mx-10 w-full">
+      <div
+        className="bg-white border-solid border-px rounded-md shadow-lg
+       shadow-gray-400 border-white col-span-1 min-w-[200px] min-h-[200px]"
+      >
+        <img src="../../assets/userimage-placeholder.png" alt="Agregar userImg ejemplo" className="" />
+
+      </div>
+
       <Card
         title="Datos Personales"
         data={data}
         fieldsToShow={["firstname", "lastname", "email", "birthDate", "phone"]}
+        className="col-span-2"
       />
 
       <Card
@@ -46,28 +55,28 @@ const UserCards = () => {
           registered: { label: "Registrado", stringify: true },
           username: { label: "Nombre de usuario", stringify: true },
         }}
-        className=""
+        className="col-span-1"
       />
       <Card
         title="Domicilio"
         data={data.address}
         fieldsToShow={["street", "suite", "city", "zipcode"]}
+        className="col-span-1"
       />
       <Card
         title="Company"
         data={data.company}
         fieldsToShow={["name", "catchPhrase", "bs"]}
+        className="col-span-1"
       />
-       <Card
+      <Card
         title="Probando Checkbox"
         data={data.otro}
-        fieldsToShow={[
-          "state"
-        ]}
+        fieldsToShow={["state"]}
         fieldDisplayConfig={{
-          state: { label: "Es donador", stringify: true, isCheckBox: true},
+          state: { label: "Donador", isCheckBox: true },
         }}
-        className="h-fit"
+        className="h-fit col-span-2"
       />
     </div>
   );

@@ -11,6 +11,9 @@ interface FieldDisplayConfig {
     isCheckBox?: boolean; //Para ver si el campo es CheckBox
   };
 }
+/*
+
+*/
 //Interfaz para las props de la card, incluye título, datos de la Api; qué datos mostraremos, etc.
 interface CardProps {
   title: string;
@@ -54,9 +57,9 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`flex flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
-     shadow-gray-400 bg-white m-4 space-y-1   w-fit flex-grow
-     ${expanded ? "" : "h-fit"} ${className}`}
+      className={`flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
+   shadow-gray-400 bg-white space-y-1  w-full flex-grow 
+   ${expanded ? "h-full" : "h-fit"} ${className}`}
     >
       <div className="flex justify-between" onClick={toggleExpansion}>
         <h4 className="text-xl">{title}</h4>
@@ -64,18 +67,20 @@ const Card: React.FC<CardProps> = ({
           <svg
             width="30"
             height="30"
-            style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG 
+            style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG
           >
-            <polygon points="15,20 5,10 25,10" fill="black" />
+            <polygon points="15,20 5,10 25,10" fill="lightgray" />
           </svg>
         </h1>
       </div>
       <div className="my-4 w-full h-px bg-slate-500"></div>
       {/* Contracción del área bajo la línea segun clic en svg */}
       <div
-        className={`grid grid-cols-1 gap-1  ${
+        className={`grid grid-cols-1 gap-1 ${
           expanded ? "" : "hidden"
-        } transition-opacity duration-800 ${fieldsToShow.length > 4 ? "grid-cols-2" : ""} ${fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`}
+        } transition-transform duration-1000 ${
+          fieldsToShow.length > 4 ? "grid-cols-2" : ""
+        } ${fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`}
       >
         {fieldsToShow.map((field, index) => {
           const formattedFieldName = convertFieldName(field);
@@ -87,15 +92,15 @@ const Card: React.FC<CardProps> = ({
           //Renderizado si es checkbox
           if (fieldConfig.isCheckBox) {
             return (
-              <div key={index} className="mb-1">
-                <label>
-                  {label}:
+              <div key={index} className="mb-1 text-sm break-words">
+                <label className="">
                   <input
                     type="checkbox"
                     checked={!!fieldValue}
                     readOnly
-                    className="ml-1"
-                  />
+                    className=""
+                  />{" "}
+                  <b>{label}</b>
                 </label>
               </div>
             );
@@ -103,17 +108,20 @@ const Card: React.FC<CardProps> = ({
 
           // Renderizado si no es un checkbox
           return (
-            <p key={index} className="mb-1">
-              {shouldStringify ? label : formattedFieldName}:{" "}
-              {typeof fieldValue === "object"
-                ? JSON.stringify(fieldValue)
-                : fieldValue}
-            </p>
+            <div key={index} className="mb-1 text-sm grid grid-cols-2 ">
+              <span className="break-words">
+                <b>{shouldStringify ? label : formattedFieldName}:</b>
+              </span>
+              <span className="break-words">
+                {typeof fieldValue === "object"
+                  ? JSON.stringify(fieldValue)
+                  : fieldValue?.toUpperCase()}
+              </span>
+            </div>
           );
         })}
       </div>
     </div>
   );
 };
-
 export default Card;
