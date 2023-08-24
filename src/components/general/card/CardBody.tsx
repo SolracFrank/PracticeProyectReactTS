@@ -34,7 +34,7 @@ const CardBody: React.FC<CardProps> = ({
   fieldDisplayConfig = {},
   expanded,
 }) => {
-  //Obtiene los objetos anidados (if exist)
+  //Obtiene los objetos anidados (if exist) devuelve string, otro objeto anidado o undefined
   const getNestedFieldValue = (
     obj: NestedObject | undefined,
     path: string[]
@@ -47,21 +47,24 @@ const CardBody: React.FC<CardProps> = ({
   };
 
   return (
+    //Variación de columnas por cantidad de datos (<p></p> e <input> son 1 dato)
     <div
-      className={`grid grid-cols-1 gap-1 ${
+      className={`grid grid-cols-1 gap-1 ${ //Si son 1 a 4 campos, una columna
         expanded ? "" : "hidden"
       } transition-transform duration-1000 ${
-        fieldsToShow.length > 4 ? "grid-cols-2" : ""
-      } ${fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`}
+        fieldsToShow.length > 4 ? "grid-cols-2" : "" //Si son 5 a 12 campos; muestra dos columnas
+      } ${fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`} //13 o más, 3 columnas
     >
+      {/*Para cada campo que se desea mostrar de la API*/}
       {fieldsToShow.map((field, index) => {
-        const formattedFieldName = convertFieldName(field);
-        const fieldValue = getNestedFieldValue(data, field.split("."));
-        const fieldConfig = fieldDisplayConfig[field] || {}; // Configuración de visualización para el campo
+        const formattedFieldName = convertFieldName(field); //Configuramos su nombre
+        const fieldValue = getNestedFieldValue(data, field.split(".")); //Obtiene su valor, si existe, si es uno o si es anidado
+        const fieldConfig = fieldDisplayConfig[field] || {}; // Configuración de visualización, nombres unicos, si se muestran, o si el tipo es checkbox
 
         const label = fieldConfig.label || field;
         const shouldStringify = fieldConfig.stringify || false;
         return (
+          //Cuerpo de la card
           <CardBodyElement
             key={index}
             isCheckBox={fieldConfig.isCheckBox || false}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CardHeader from "./CardHeader.";
 import CardBody from "./CardBody";
+
 //Interface para objetos anidados
 type NestedObject = {
   [key: string]: string | NestedObject; // de la forma {(key:string) : value:string or {(key:string) : value:string or {...}}}
@@ -22,7 +23,7 @@ interface CardProps {
   className?: string;
 }
 
-//Componente pa' la card
+//Componentes pa' la card
 export const Card: React.FC<CardProps> = (
   { title, data, fieldsToShow, fieldDisplayConfig = {}, className },
   ...props
@@ -35,10 +36,10 @@ export const Card: React.FC<CardProps> = (
 
   return (
     <div
-      {...props}
+      {...props} 
       className={`flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
    shadow-gray-400 bg-white space-y-1  w-full flex-grow  text-gray-600
-   ${expanded ? "h-full" : "h-fit"} ${className}`}
+   ${expanded ? "h-full" : "h-fit"} ${className}`} //Altura "full" si expandido, fit si contraído (como no hay nada, fit lo hace mínimo antes del title)
     >
       <CardHeader
         title={title}

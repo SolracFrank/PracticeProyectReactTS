@@ -16,7 +16,7 @@ const CardHeader: React.FC<CardProps> = ({
         <svg
           width="30"
           height="30"
-          style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG
+          style={{ transform: !expanded ? "rotate(180deg)" : "rotate(0deg)" }} // Rotación del SVG ^ v 
         >
           <polygon points="15,20 5,10 25,10" fill="lightgray" />
         </svg>

@@ -19,17 +19,16 @@ const CardBodyElement: React.FC<CardProps> = ({
   formattedFieldName,
 }) => {
   if (isCheckBox) {
+    //Renderizado si es un checkbox
     return (
       <div className="mb-1 text-sm break-words">
         <label className="">
-          <input type="checkbox" checked={!!fieldValue} readOnly className="" />{" "}
+          <input type="checkbox" checked={!!fieldValue} readOnly className="" />{" "} {/* Falta configurar por si los datos no son booleanos (EJ recibe Sí y No, o true or false en string*/}
           <b>{label}</b>
         </label>
       </div>
     );
   }
-  //"fieldDisplayConfig" es posiblemente "undefined".ts(18048)
-  // La propiedad 'toUpperCase' no existe en el tipo '{}'.ts(2339)
 
   // Renderizado si no es un checkbox
   return (
