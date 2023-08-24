@@ -20,10 +20,11 @@ const CardBodyElement: React.FC<CardProps> = ({
 }) => {
   if (isCheckBox) {
     //Renderizado si es un checkbox
+    const isChecked = fieldValue === "true";
     return (
-      <div className="mb-1 text-sm break-words">
+      <div className="mb-1 text-sm break-words grid-cols-2">
         <label className="">
-          <input type="checkbox" checked={!!fieldValue} readOnly className="" />{" "} {/* Falta configurar por si los datos no son booleanos (EJ recibe Sí y No, o true or false en string*/}
+          <input type="checkbox" checked={isChecked} readOnly className="" />{" "} {/* Falta configurar por si los datos no son booleanos (EJ recibe Sí y No, o true or false en string*/}
           <b>{label}</b>
         </label>
       </div>
