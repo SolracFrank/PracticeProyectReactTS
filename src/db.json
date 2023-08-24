@@ -28,12 +28,12 @@
       "bs": "Marketing"
     },
     "medicalData" : {
-        "estatura": 1.74, 
-        "peso": 81.00,
+        "estatura": "1.74", 
+        "peso": "81.00",
         "tipoDeSangre": "A+",
-        "tallaCamisaChica": "G",
+        "tallaCamisa": "G",
         "tallaChamarra": "G",
-        "donador": false    
+        "donador": "false"    
     }
   }
 ]

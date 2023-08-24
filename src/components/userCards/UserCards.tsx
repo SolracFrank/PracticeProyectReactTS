@@ -2,9 +2,17 @@ import {Card} from "../general/card";
 import { useQuery } from "react-query";
 
 // JSON propio https://github.com/SolracFrank/testing/blob/main/db.json
+import jsonData from "../../db.json";
 
 // API placeholder  `https://jsonplaceholder.org/users/${idDePrueba}`
 const UserCards = () => {
+  
+  const getLocalUserData = () => {
+    // Simplemente retornamos los datos locales
+    return jsonData;
+  };
+
+
   const idDePrueba = 4;
   const getProducts = async () => {
     const response = await fetch(
@@ -14,11 +22,11 @@ const UserCards = () => {
   };
 
   const { data, status } = useQuery("user", getProducts);
-
+  const localData = getLocalUserData();
   if (status == "loading") {
     return <p> cargando...</p>;
   }
-  if (status == "error") {
+  if (status == "error" ) {
     return <p> error</p>;
   }
 
@@ -66,7 +74,7 @@ const UserCards = () => {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 mb-6">
         <Card
           title="Probando Checkbox"
           data={data.otro}
@@ -75,6 +83,18 @@ const UserCards = () => {
             state: { label: "Es donador", isCheckBox: true },
           }}
           className="h-fit col-span-2"
+        />
+      </div>
+          
+      <div className="grid grid-cols-3 gap-6 mb-6">
+        <Card
+          title="Probando Checkbox"
+          data={localData[0].medicalData}
+          fieldsToShow={["estatura","peso","tipoDeSangre","talla","tallaCamisa","donador"]}
+          fieldDisplayConfig={{
+            donador: { label: "Es donador", isCheckBox: true },
+          }}
+          className="h-fit col-span-3"
         />
       </div>
 

@@ -32,7 +32,7 @@ const CardBodyElement: React.FC<CardProps> = ({
 
   // Renderizado si no es un checkbox
   return (
-    <div className="mb-1 text-sm grid grid-cols-2 ">
+    <div className="mb-1 text-sm grid grid-cols-2 ">-
       <span className="break-words">
         <b>{shouldStringify ? label : formattedFieldName}:</b>
       </span>
