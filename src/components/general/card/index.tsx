@@ -21,11 +21,12 @@ interface CardProps {
   fieldsToShow: string[];
   fieldDisplayConfig?: FieldDisplayConfig;
   className?: string;
+  component?: React.ReactNode;
 }
 
 //Componentes pa' la card
 export const Card: React.FC<CardProps> = (
-  { title, data, fieldsToShow, fieldDisplayConfig = {}, className },
+  { title, data, fieldsToShow, fieldDisplayConfig = {}, className, component },
   ...props
 ) => {
   //Definir expansión del icon svg por booleanos
@@ -54,6 +55,11 @@ export const Card: React.FC<CardProps> = (
         fieldsToShow={fieldsToShow}
         fieldDisplayConfig={fieldDisplayConfig}
       />
+
+      {component && expanded && (
+         <div className="mt-4">{component}</div>
+      )}
+
     </div>
   );
 };
