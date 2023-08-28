@@ -24,7 +24,8 @@ const OtherCards = () => {
         <Card
           title="Datos Personales"
           data={data}
-          fieldsToShow={["clave"]}
+          fieldsToShow={[]} 
+          fieldDisplayConfig={{clave: { label: "Clave U", stringify: true }}}
           className="col-span-2"
         />
       </div>
