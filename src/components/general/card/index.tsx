@@ -37,17 +37,20 @@ export const Card: React.FC<CardProps> = (
 
   return (
     <div
-      {...props} 
+      {...props}
       className={`flex-col p-8 border-px border-solid border-white shadow-md rounded-lg
    shadow-gray-400 bg-white space-y-1  w-full flex-grow  text-gray-600
    ${expanded ? "h-full" : "h-fit"} ${className}`} //Altura "full" si expandido, fit si contraído (como no hay nada, fit lo hace mínimo antes del title)
     >
-      <CardHeader
-        title={title}
-        toggleExpansion={toggleExpansion}
-        expanded={expanded}
-      />
-      <div className="my-4 w-full h-px bg-slate-500"></div>
+      <div className="-space-y-0 group">
+        <CardHeader
+          title={title}
+          toggleExpansion={toggleExpansion}
+          expanded={expanded}
+          className="group-hover:text-green-600"
+        />
+        <div className="my-4 w-full h-px bg-blue-500 group-hover:bg-green-500" />
+      </div>
       {/* Contracción del área bajo la línea segun clic en svg */}
       <CardBody
         expanded={expanded}
@@ -56,10 +59,7 @@ export const Card: React.FC<CardProps> = (
         fieldDisplayConfig={fieldDisplayConfig}
       />
 
-      {component && expanded && (
-         <div className="mt-4">{component}</div>
-      )}
-
+      {component && expanded && <div className="mt-4">{component}</div>}
     </div>
   );
 };

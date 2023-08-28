@@ -5,6 +5,7 @@ import PrincipalLayout from "./components/Layout/PrincipalLayout";
 import Login from "./components/pages/Login";
 import UserProvider from "./components/context/UserProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Contact from "./components/pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => {
               <Route path="/" element={<PrincipalLayout />}>
                 <Route path="/" element={<Index />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route
                   path="/*"
                   element={
