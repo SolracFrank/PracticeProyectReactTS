@@ -33,14 +33,15 @@ const CardBodyElement: React.FC<CardProps> = ({
 
   // Renderizado si no es un checkbox
   return (
-    <div className="mb-1 text-sm grid grid-cols-2 ">
-      <span className="break-words">
-        <b>{shouldStringify ? label : formattedFieldName}:</b>
-      </span>
-      <span className="break-words">
+    <div className="mb-1 text-sm grid grid-cols-1 ">
+    
+      <span className="break-words font-bold text-blue-900">
         {typeof fieldValue === "object"
           ? JSON.stringify(fieldValue)
           : fieldValue?.toUpperCase()}
+      </span>
+      <span className="break-words">
+        {shouldStringify ? label : formattedFieldName}
       </span>
     </div>
   );
