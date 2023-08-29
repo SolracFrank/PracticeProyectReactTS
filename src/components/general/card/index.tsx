@@ -25,15 +25,20 @@ interface CardProps {
 }
 
 //Componentes pa' la card
-export const Card: React.FC<CardProps> = (
-  { title, data, fieldsToShow, fieldDisplayConfig = {}, className, component }
-) => {
+export const Card: React.FC<CardProps> = ({
+  title,
+  data,
+  fieldsToShow = [],
+  fieldDisplayConfig = {},
+  className,
+  component,
+}) => {
   //Definir expansión del icon svg por booleanos
   const [expanded, setExpanded] = useState(true);
   const toggleExpansion = () => {
     setExpanded(!expanded);
   };
-    fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
+  fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
 
   return (
     <div
@@ -41,14 +46,13 @@ export const Card: React.FC<CardProps> = (
    shadow-gray-400 bg-white space-y-1  w-full flex-grow  text-gray-600
    ${expanded ? "h-full" : "h-fit"} ${className}`} //Altura "full" si expandido, fit si contraído (como no hay nada, fit lo hace mínimo antes del title)
     >
-      <div className="-space-y-0 group">
+      <div className="-space-y-0 mb-4 group border-b-[3px] border-green-1100">
         <CardHeader
           title={title}
           toggleExpansion={toggleExpansion}
           expanded={expanded}
-          className="group-hover:text-green-600"
         />
-        <div className="my-4 w-full h-px bg-blue-500 group-hover:bg-green-500" />
+        {/* <div className="mt-4  w-full h-px border border-green-1100" /> */}
       </div>
       {/* Contracción del área bajo la línea segun clic en svg */}
       <CardBody

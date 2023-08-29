@@ -16,5 +16,27 @@
     "telefono": "395 783 3534",
     "celular": "395 785 4040"
   }
-  
+  ,
+  {
+    "estatura": "1.76",
+    "peso": "81",
+    "tipoSangre":"A+",
+    "tallaCamisa":"G",
+    "tallaChamarra": "G",
+    "tallaPantalon": "36",
+    "numeroZapato":"27",
+    "donador": "true"
+  },
+  {
+    "ultimoGrado":"Maestria",
+    "duracion":"4",
+    "doctoQueAvala":"TITULO",
+    "titulo":"Lic. Informatica" 
+  },
+  {
+    "tieneAutos":"si",
+    "cuantos":"1",
+    "numAsegurados":"1",
+    "tipoVivienda":"INFONAVIT"
+  }
 ]

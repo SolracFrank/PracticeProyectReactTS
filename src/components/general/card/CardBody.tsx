@@ -52,8 +52,8 @@ const CardBody: React.FC<CardProps> = ({
       className={`grid grid-cols-1 gap-1 ${ //Si son 1 a 4 campos, una columna
         expanded ? "" : "hidden"
       } transition-transform duration-1000 ${
-        fieldsToShow.length > 4 ? "grid-cols-2" : ""} ${ //Si son 5 a 12 campos; muestra dos columnas
-       fieldsToShow.length > 12 ? "lg:grid-cols-3" : ""}`} //13 o más, 3 columnas
+        fieldsToShow.length > 4 ? "md:grid-cols-2" : ""} ${ //Si son 5 a 12 campos; muestra dos columnas
+       fieldsToShow.length > 12 ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-4" : ""}`} //13 o más, 3 columnas
     >
       {/*Para cada campo que se desea mostrar de la API*/}
       {fieldsToShow.map((field, index) => {

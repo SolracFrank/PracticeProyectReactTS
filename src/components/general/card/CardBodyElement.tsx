@@ -23,9 +23,13 @@ const CardBodyElement: React.FC<CardProps> = ({
     const isChecked = fieldValue === "true"; // Convertir cadena a booleano
     return (
       <div className="mb-1 text-sm break-words">
-        <label className="text-gray-500">
-          <input type="checkbox" checked={isChecked} readOnly 
-          className="form-checkbox  text-green-500 border-gray-300 rounded focus:ring-green-400" />{" "} 
+        <label className="font-semibold text-lg text-blue-900 ">
+          <input
+            type="checkbox"
+            checked={isChecked}
+            readOnly
+            className="form-checkbox  text-green-500 border-gray-300 rounded"
+          />{" "}
           {label}
         </label>
       </div>
@@ -34,14 +38,13 @@ const CardBodyElement: React.FC<CardProps> = ({
 
   // Renderizado si no es un checkbox
   return (
-    <div className="mb-1 text-sm grid grid-cols-1  ">
-    
-      <span className="break-words font-bold text-blue-900 hover:text-green-600">
+    <div className="mb-1 text-sm grid grid-rows-1 leading-3">
+      <span className="break-words font-semibold text-lg text-blue-900 flex-col">
         {typeof fieldValue === "object"
           ? JSON.stringify(fieldValue)
-          : fieldValue?.toUpperCase() }
+          : fieldValue?.toUpperCase()}
       </span>
-      <span className="break-words text-gray-500">
+      <span className="break-words text-blue-1100 font-light">
         {shouldStringify ? label : formattedFieldName}
       </span>
     </div>

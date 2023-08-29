@@ -11,7 +11,7 @@ const OtherCards = () => {
             console.log(error);
         }
         
-    }, []); // El array vacío [] asegura que el efecto se ejecute solo una vez al montar el componente
+    }, []);
   
   return (
     <div className="mx-10 w-full">
@@ -25,7 +25,10 @@ const OtherCards = () => {
           title="Datos Personales"
           data={data}
           fieldsToShow={[]} 
-          fieldDisplayConfig={{clave: { label: "Clave U", stringify: true }}}
+          fieldDisplayConfig={{
+            clave: { label: "Clave única", stringify: true },
+            curp: { label: "CURP", stringify: true },
+        }}
           className="col-span-2"
         />
       </div>
@@ -37,3 +40,4 @@ const OtherCards = () => {
 
 
 export default OtherCards;
+//         
