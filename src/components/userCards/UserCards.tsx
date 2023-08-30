@@ -43,7 +43,7 @@ const UserCards = () => {
 
   return (
     <div className="mx-10 w-full ">
-      <div className="flex pb-4 lg:w-[90%] mb-6">
+      <div className="flex pb-4 lg:w-[90%] ">
         <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
         <input
           className="w-full rounded-md border border-blue-900 
@@ -59,7 +59,7 @@ const UserCards = () => {
           Buscar
         </button>
       </div>
-      <div className="grid grid-cols-12 gap-6 mb-6">
+      <div className="grid grid-cols-12  ">
         <div
           className="bg-blue-1000 border-solid border-px 
         rounded-md shadow-md shadow-gray-400 border-white 
@@ -101,21 +101,9 @@ const UserCards = () => {
           }}
           className="col-span-12 md:col-span-12 lg:col-span-9"
         />
-        {/* <Card
-          title="Datos Personales"
-          data={data}
-          fieldsToShow={[
-            "firstname",
-            "lastname",
-            "email",
-            "birthDate",
-            "phone",
-          ]}
-          className="col-span-10"
-        /> */}
       </div>
 
-      <div className="grid grid-cols-12 gap-6 mb-6 min-h-[300px]">
+      <div className="grid grid-cols-12   min-h-[300px]">
         <Card
           title="Somatometria"
           data={ldata2}
@@ -143,7 +131,7 @@ const UserCards = () => {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 ">
         <Card
           title="Probando Checkbox"
           data={data.otro}
@@ -159,23 +147,4 @@ const UserCards = () => {
 };
 
 export default UserCards;
-{
-  /* <Card
-          title="Datos de Usuario"
-          data={data.login}
-          fieldsToShow={[
-            "uuid",
-            "username",
-            "password",
-            "md5",
-            "sha1",
-            "registered",
-          ]}
-          fieldDisplayConfig={{
-            uuid: { label: "ID Único", stringify: true },
-            registered: { label: "Registrado", stringify: true },
-            username: { label: "Nombre de usuario", stringify: true },
-          }}
-          className="lg:col-span-2 col-span-4"
-        /> */
-}
+

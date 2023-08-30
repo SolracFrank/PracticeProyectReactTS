@@ -1,8 +1,7 @@
 type NestedObject = {
-  [key: string]: string | NestedObject; // de la forma {(key:string) : value:string or {(key:string) : value:string or {...}}}
+  [key: string]: string | NestedObject;
 };
 
-//Interfaz para las props de la card, incluye título, datos de la Api; qué datos mostraremos, etc.
 interface CardProps {
   isCheckBox: boolean;
   fieldValue: string | NestedObject | undefined;
@@ -19,8 +18,7 @@ const CardBodyElement: React.FC<CardProps> = ({
   formattedFieldName,
 }) => {
   if (isCheckBox) {
-    //Renderizado si es un checkbox
-    const isChecked = fieldValue === "true"; // Convertir cadena a booleano
+    const isChecked = fieldValue === "true";
     return (
       <div className="mb-1 text-sm break-words">
         <label className="font-semibold text-lg text-blue-900 ">
@@ -36,7 +34,6 @@ const CardBodyElement: React.FC<CardProps> = ({
     );
   }
 
-  // Renderizado si no es un checkbox
   return (
     <div className="mb-1 text-sm grid grid-rows-1 leading-3">
       <span className="break-words font-semibold text-lg text-blue-900 flex-col">
