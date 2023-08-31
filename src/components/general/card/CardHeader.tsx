@@ -13,15 +13,16 @@ const CardHeader: React.FC<CardProps> = ({
   className,
 }) => {
   return (
-    <div className="flex justify-between" onClick={toggleExpansion}>
+    <div className="flex justify-between" >
       <h4 className={`text-xl font-bold text-blue-900 ${className}`}>
         {title}
       </h4>
       <img
         src={toggleIcon}
         alt="toggleIcon"
-        className="h-4"
+        className="h-4 hover:cursor-pointer"
         style={{ transform: !expanded ? "rotate(0deg)" : "rotate(180deg)" }}
+        onClick={toggleExpansion}
       />
     </div>
   );

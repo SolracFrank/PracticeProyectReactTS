@@ -18,7 +18,28 @@ export const useGetData = (apiUrl: string, apiUrlId: string) => {
     };
 
     fetchData();
-  }, [apiUrl,apiUrlId]);
+  }, [apiUrl, apiUrlId]);
+
+  return { data, status };
+};
+
+export const useGetAllData = (apiUrl:string) => {
+  const [data, setData] = useState<[]>();
+  const [status, setStatus] = useState("loading");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${apiUrl}`);
+        setData(response.data);
+        setStatus("success");
+      } catch (error) {
+        setStatus("error");
+      }
+    };
+
+    fetchData();
+  }, [apiUrl]);
 
   return { data, status };
 };
