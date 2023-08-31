@@ -1,13 +1,10 @@
 import { Card } from "../general/card";
 import { useQuery } from "react-query";
 import { useState, useEffect } from "react";
-import img from "../../assets/logo2.png";
+import SearchUserBar from "../searchBarUser/SearchBarUser"
 import userimg from "../../assets/usuario.png";
 import jsonData from "../../db.json";
 
-// JSON propio https://github.com/SolracFrank/testing/blob/main/db.json
-
-// API placeholder  `https://jsonplaceholder.org/users/${idDePrueba}`
 const UserCards = () => {
   const [ldata, setData] = useState({});
   const [ldata2, setData2] = useState({});
@@ -43,22 +40,7 @@ const UserCards = () => {
 
   return (
     <div className="mx-10 w-full ">
-      <div className="flex pb-4 lg:w-[90%] ">
-        <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
-        <input
-          className="w-full rounded-md border border-blue-900 
-        px-3 py-2 text-sm shadow-sm focus:border-blue-1100 
-        focus:outline-none mx-2"
-          type="text"
-          placeholder="Búsqueda"
-        />
-        <button
-          className="border hover:bg-gray-100 border-blue-900 rounded-md mx-2 p-2"
-          type="button"
-        >
-          Buscar
-        </button>
-      </div>
+    <SearchUserBar/>
       <div className="grid grid-cols-12  ">
         <div
           className="bg-blue-1000 border-solid border-px 

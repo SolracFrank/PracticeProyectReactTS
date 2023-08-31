@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import CardHeader from "./CardHeader.";
 import CardBody from "./CardBody";
-
-type NestedObject = {
-  [key: string]: string | NestedObject; // {(key:string) : value:string or {(key:string) : value:string or {...}}}
-};
+import { NestedObject } from "../../../interfaces/interfaces";
 
 interface FieldDisplayConfig {
   [fieldName: string]: {
@@ -34,8 +31,9 @@ export const Card: React.FC<CardProps> = ({
   const toggleExpansion = () => {
     setExpanded(!expanded);
   };
-  fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
-  
+// Y en el componente, revisa si data es null
+   fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
+ 
   return (
     <div
       className={`flex-col p-8 border-px border-solid border-white shadow-md rounded-lg

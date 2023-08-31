@@ -1,50 +1,41 @@
+import  { useState, useEffect } from "react";
+import axios from "axios";
 import { Card } from "../general/card";
-import { useQuery } from "react-query";
-import img from "../../assets/logo2.png";
+import SearchBarUser from "../searchBarUser/SearchBarUser";
 import userimg from "../../assets/usuario.png";
 
-
-// JSON propio https://github.com/SolracFrank/testing/blob/main/db.json
-
-// API placeholder  `https://jsonplaceholder.org/users/${idDePrueba}`
 const OtherCards = () => {
-
+  const [data, setData] = useState({});
+  const [status, setStatus] = useState("loading");
 
   const idDePrueba = 4;
-  const getProducts = async () => {
-    const response = await fetch(
-      `https://jsonplaceholder.org/users/${idDePrueba}`
-    );
-    return response.json();
-  };
 
-  const { data, status } = useQuery("user", getProducts);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://jsonplaceholder.org/users/${idDePrueba}`
+        );
+        setData(response.data);
+        setStatus("success");
+      } catch (error) {
+        setStatus("error");
+      }
+    };
 
-  if (status == "loading") {
-    return <p> cargando...</p>;
+    fetchData();
+  }, []);
+
+  if (status === "loading") {
+    return <p>cargando...</p>;
   }
-  if (status == "error") {
-    return <p> error</p>;
-  }
 
+  if (status === "error") {
+    return <p>error</p>;
+  }
   return (
     <div className="mx-10 w-full ">
-      <div className="flex pb-4 lg:w-[90%] ">
-        <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
-        <input
-          className="w-full rounded-md border border-blue-900 
-        px-3 py-2 text-sm shadow-sm focus:border-blue-1100 
-        focus:outline-none mx-2"
-          type="text"
-          placeholder="Búsqueda"
-        />
-        <button
-          className="border hover:bg-gray-100 border-blue-900 rounded-md mx-2 p-2"
-          type="button"
-        >
-          Buscar
-        </button>
-      </div>
+      <SearchBarUser />
       <div className="grid grid-cols-12  ">
         <div
           className="bg-blue-1000 border-solid border-px 
@@ -80,7 +71,7 @@ const OtherCards = () => {
         <Card
           title="Datos Personales"
           data={data}
-          fieldsToShow={['email','birthDate','phone','website']}
+          fieldsToShow={["email", "birthDate", "phone", "website"]}
           className="col-span-12 md:col-span-12 lg:col-span-9"
         />
       </div>
@@ -95,7 +86,7 @@ const OtherCards = () => {
         <Card
           title="Informacion Academica"
           data={data.address}
-          fieldsToShow={['stret','suite','city','zipcode']}
+          fieldsToShow={["stret", "suite", "city", "zipcode"]}
           className="lg:col-span-4 col-span-12"
         />
 
@@ -103,7 +94,6 @@ const OtherCards = () => {
           title="Informacion económica"
           data={data.company}
           className="lg:col-span-4 col-span-12"
-
         />
       </div>
 
@@ -112,7 +102,9 @@ const OtherCards = () => {
           title="Probando Checkbox"
           data={data.otro}
           fieldsToShow={["state"]}
-          fieldDisplayConfig={{state:{label:'¿Es donador?',isCheckBox:true}}}
+          fieldDisplayConfig={{
+            state: { label: "¿Es donador?", isCheckBox: true },
+          }}
           className="h-fit col-span-2"
         />
       </div>
@@ -121,4 +113,3 @@ const OtherCards = () => {
 };
 
 export default OtherCards;
-

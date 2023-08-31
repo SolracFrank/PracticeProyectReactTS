@@ -1,7 +1,6 @@
 import CardBodyElement from "./CardBodyElement";
-type NestedObject = {
-  [key: string]: string | NestedObject;
-};
+import { NestedObject } from "../../../interfaces/interfaces";
+
 interface FieldDisplayConfig {
   [fieldName: string]: {
     label: string;
