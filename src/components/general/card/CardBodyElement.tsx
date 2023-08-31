@@ -20,7 +20,7 @@ const CardBodyElement: React.FC<CardProps> = ({
   {
    fieldValue = JSON.stringify(fieldValue); 
   }
-  console.log(fieldValue);
+  //console.log(fieldValue);
   if (isCheckBox) {
     const isChecked = fieldValue === "true";
     return (

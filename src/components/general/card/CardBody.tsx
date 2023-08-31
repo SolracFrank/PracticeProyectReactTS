@@ -46,16 +46,17 @@ const CardBody: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-1 gap-1 
+      className={`grid grid-cols-1 gap-1 lg:space-y-0
       ${expanded ? "" : "hidden"}  
-      ${fieldsToShow.length > 4 ? "md:grid-cols-2" : ""} 
+      ${fieldsToShow.length > 4 ? "md:grid-cols-2 lg:space-y-0" : ""} 
       ${
         fieldsToShow.length > 12
-          ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-4"
+          ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-0"
           : ""
       }
       `}
     >
+
       {fieldsToShow.map((field, index) => {
         const formattedFieldName = convertFieldName(field);
         const fieldValue = getNestedFieldValue(data, field.split("."));

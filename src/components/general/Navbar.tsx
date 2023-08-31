@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
-  console.log(user);
+  //console.log(user);
   return (
     <div className="flex bg-blue-600  w-full justify-center md:justify-around text-white p-6 md:p-4">
       <div className="flex ">

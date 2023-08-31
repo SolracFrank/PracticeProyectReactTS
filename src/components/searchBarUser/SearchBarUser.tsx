@@ -3,7 +3,6 @@ import img from "../../assets/logo2.png";
 interface searchBarProps
 {
   SearchUser: (userId:string) => void;
-  userId?: string;
 }
 
 
@@ -16,10 +15,14 @@ interface searchBarProps
     }
     function onClick()
     {
-       
-        console.log("ProbandoClc")
-        SearchUser(value);
+        value? SearchUser(value) : SearchUser('');
+        
     }
+    const handleKeyPress = (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        onClick();
+      }
+    };
 
   return (
     <div className="flex pb-4 lg:w-[90%] ">
@@ -32,6 +35,7 @@ interface searchBarProps
         placeholder="Búsqueda"
         onChange={OnChange}
         value={value}
+        onKeyUp={handleKeyPress}
       />
       <button
         className="border hover:bg-gray-100 border-blue-900 rounded-md mx-2 p-2"

@@ -11,7 +11,6 @@ const OtherCards = () => {
   function SearchUser(userId : string)
   {
     setUserId(userId);
-    console.log('me diste clic');
   }
 
   if (status === "loading") return <p>cargando...</p>;
