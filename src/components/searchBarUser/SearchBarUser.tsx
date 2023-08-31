@@ -1,9 +1,13 @@
 import {  useState } from "react";
 import img from "../../assets/logo2.png";
+interface searchBarProps
+{
+  SearchUser: (userId:string) => void;
+  userId?: string;
+}
 
 
-
- const SearchBarUser: React.FC = () => {
+ const SearchBarUser: React.FC<searchBarProps> = ({SearchUser}) => {
     const [value, setValue] = useState("");
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>)
@@ -12,7 +16,9 @@ import img from "../../assets/logo2.png";
     }
     function onClick()
     {
+       
         console.log("ProbandoClc")
+        SearchUser(value);
     }
 
   return (

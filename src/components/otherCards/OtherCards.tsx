@@ -3,9 +3,16 @@ import { Card } from "../general/card";
 import SearchBarUser from "../searchBarUser/SearchBarUser";
 import userimg from "../../assets/usuario.png";
 import {useGetData} from "../hooks/useFetch"
+import { useState } from "react";
 
 const OtherCards = () => {
-  const {status, data} = useGetData('https://jsonplaceholder.org/users/','1');
+  const [userId, setUserId] = useState('1');
+  const {status, data} = useGetData('https://jsonplaceholder.org/users/',userId);
+  function SearchUser(userId : string)
+  {
+    setUserId(userId);
+    console.log('me diste clic');
+  }
 
   if (status === "loading") return <p>cargando...</p>;
 
@@ -13,7 +20,10 @@ const OtherCards = () => {
 
   return (
     <div className="mx-10 w-full ">
-      <SearchBarUser />
+
+      <SearchBarUser 
+      SearchUser={SearchUser}
+      />
 
       <div className="grid grid-cols-12 mb-2 ">
         <div
