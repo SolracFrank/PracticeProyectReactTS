@@ -1,6 +1,5 @@
-type NestedObject = {
-  [key: string]: string | NestedObject;
-};
+import { NestedObject } from "../../../interfaces/Interfaces";
+
 
 interface CardProps {
   isCheckBox: boolean;

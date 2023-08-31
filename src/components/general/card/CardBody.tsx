@@ -1,7 +1,6 @@
 import CardBodyElement from "./CardBodyElement";
-type NestedObject = {
-  [key: string]: string | NestedObject;
-};
+import { NestedObject } from "../../../interfaces/Interfaces";
+
 interface FieldDisplayConfig {
   [fieldName: string]: {
     label: string;
@@ -12,7 +11,7 @@ interface FieldDisplayConfig {
 
 interface CardProps {
   expanded: boolean;
-  data: NestedObject;
+  data: NestedObject | string;
   fieldsToShow: string[];
   fieldDisplayConfig?: FieldDisplayConfig;
   className?: string;
@@ -35,7 +34,7 @@ const CardBody: React.FC<CardProps> = ({
 }) => {
   //Gets a nested object, a string value or an undefined.
   const getNestedFieldValue = (
-    obj: NestedObject | undefined,
+    obj: NestedObject | string,
     path: string[]
   ): string | NestedObject | undefined => {
     return path.reduce<string | NestedObject | undefined>(
@@ -47,12 +46,12 @@ const CardBody: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`grid grid-cols-1 gap-1 lg:space-y-0
+      className={`grid grid-cols-1 gap-1 
       ${expanded ? "" : "hidden"}  
-      ${fieldsToShow.length > 4 ? "md:grid-cols-2 lg:space-y-0" : ""} 
+      ${fieldsToShow.length > 4 ? "md:grid-cols-2" : ""} 
       ${
         fieldsToShow.length > 12
-          ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-0"
+          ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-4"
           : ""
       }
       `}

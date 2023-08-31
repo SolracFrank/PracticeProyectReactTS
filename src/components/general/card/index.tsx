@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import CardHeader from "./CardHeader.";
 import CardBody from "./CardBody";
-
-type NestedObject = {
-  [key: string]: string | NestedObject; // {(key:string) : value:string or {(key:string) : value:string or {...}}}
-};
+import { NestedObject } from "../../../interfaces/Interfaces";
 
 interface FieldDisplayConfig {
   [fieldName: string]: {
@@ -14,7 +11,7 @@ interface FieldDisplayConfig {
   };
 }interface CardProps {
   title: string;
-  data: NestedObject;
+  data: NestedObject | string;
   fieldsToShow?: string[];
   fieldDisplayConfig?: FieldDisplayConfig;
   className?: string;
