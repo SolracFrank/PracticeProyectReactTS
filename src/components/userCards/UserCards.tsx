@@ -59,32 +59,35 @@ const UserCards = () => {
           Buscar
         </button>
       </div>
-      <div className="grid grid-cols-12  ">
+      <div className="grid grid-cols-12 mb-2 ">
+        
         <div
-          className="bg-blue-1000 border-solid border-px 
-        rounded-md shadow-md shadow-gray-400 border-white 
-        col-span-12  sm:col-span-12 md:col-span-12 lg:grid-cols-1 lg:col-span-3 grid md:grid-cols-2 grid-cols-2 
-        lg:h-full justify-items-center lg:justify-items-start items-center lg:items-start mx-auto "
+          className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white 
+          lg:h-full lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
+          col-span-12  sm:col-span-12 lg:col-span-2 
+          grid grid-cols-2  md:grid-cols-2 lg:grid-cols-1  
+        "
         >
-          <div className="m-2 h-full flex p-2">
-            <img className="lg:h-full  " src={userimg} alt="userImg" />
+          <div className="mx-2 mt-2 flex">
+            <img className="lg:h-[150px]" src={userimg} alt="userImg" />{" "}
+            {/*lg:h-full  */}
           </div>
 
-          <div className="m-3 space-y-2 ">
+          <div className="ml-2 pb-2">
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
+              <p className="font-semibold text-white text-lg">
                 {data.firstname}
               </p>
               <p className="text-blue-1100 font-light">Nombre /s</p>
             </div>
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
+              <p className="font-semibold text-white text-lg">
                 {data.lastname}
               </p>
               <p className="text-blue-1100 font-light">Apellido Paterno</p>
             </div>
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
+              <p className="font-semibold text-white text-lg">
                 {data.lastname}
               </p>
               <p className="text-blue-1100 font-light">Apellido Materno</p>
@@ -99,11 +102,12 @@ const UserCards = () => {
             clave: { label: "Clave única", stringify: true },
             curp: { label: "CURP", stringify: true },
           }}
-          className="col-span-12 md:col-span-12 lg:col-span-9"
+          className="col-span-12 md:col-span-12 lg:col-span-10 w-full"
         />
+        
       </div>
 
-      <div className="grid grid-cols-12   min-h-[300px]">
+      <div className="grid grid-cols-12  gap-2 mb-2 ">
         <Card
           title="Somatometria"
           data={ldata2}
@@ -130,21 +134,8 @@ const UserCards = () => {
           }}
         />
       </div>
-
-      <div className="grid grid-cols-3 ">
-        <Card
-          title="Probando Checkbox"
-          data={data.otro}
-          fieldsToShow={["state"]}
-          fieldDisplayConfig={{
-            state: { label: "Es donador", isCheckBox: true },
-          }}
-          className="h-fit col-span-2"
-        />
-      </div>
     </div>
   );
 };
 
 export default UserCards;
-

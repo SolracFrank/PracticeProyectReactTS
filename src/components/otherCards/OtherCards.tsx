@@ -45,7 +45,7 @@ const OtherCards = () => {
           Buscar
         </button>
       </div>
-      <div className="grid grid-cols-12  ">
+      <div className="grid grid-cols-12 gap-1 ">
         <div
           className="bg-blue-1000 border-solid border-px 
         rounded-md shadow-md shadow-gray-400 border-white 
@@ -85,7 +85,7 @@ const OtherCards = () => {
         />
       </div>
 
-      <div className="grid grid-cols-12   min-h-[300px]">
+      <div className="grid grid-cols-12 gap-1 min-h-[300px]">
         <Card
           title="Somatometria"
           data={data.login}
@@ -107,7 +107,7 @@ const OtherCards = () => {
         />
       </div>
 
-      <div className="grid grid-cols-3 ">
+      <div className="grid grid-cols-3 gap-1">
         <Card
           title="Probando Checkbox"
           data={data.otro}

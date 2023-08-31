@@ -35,13 +35,13 @@ const CardBodyElement: React.FC<CardProps> = ({
   }
 
   return (
-    <div className="mb-1 text-sm grid grid-rows-1 leading-3">
-      <span className="break-words font-semibold text-lg text-blue-900 flex-col">
+    <div className="text-sm grid grid-rows-1 -space-y-2">
+      <span className=" font-semibold text-lg text-blue-900 ">
         {typeof fieldValue === "object"
           ? JSON.stringify(fieldValue)
           : fieldValue?.toUpperCase()}
       </span>
-      <span className="break-words text-blue-1100 font-light">
+      <span className=" text-blue-1100 font-light">
         {shouldStringify ? label : formattedFieldName}
       </span>
     </div>
