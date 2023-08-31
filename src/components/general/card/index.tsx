@@ -9,9 +9,10 @@ interface FieldDisplayConfig {
     stringify?: boolean; 
     isCheckBox?: boolean; 
   };
-}interface CardProps {
+}
+interface CardProps {
   title: string;
-  data: NestedObject;
+  data: NestedObject | string;
   fieldsToShow?: string[];
   fieldDisplayConfig?: FieldDisplayConfig;
   className?: string;

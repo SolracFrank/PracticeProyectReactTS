@@ -1,14 +1,15 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card } from "../general/card";
 import SearchBarUser from "../searchBarUser/SearchBarUser";
 import userimg from "../../assets/usuario.png";
+import { NestedObject } from "../../interfaces/interfaces";
 
 const OtherCards = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<NestedObject>({});
   const [status, setStatus] = useState("loading");
 
-  const idDePrueba = 4;
+  const idDePrueba = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,19 +51,21 @@ const OtherCards = () => {
           <div className="m-3 space-y-2 ">
             <div className="leading-3">
               <p className="font-semibold text-white text-xl">
-                {data.firstname}
+                {typeof data.firstname === "string"
+                  ? data.firstname
+                  : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Nombre /s</p>
             </div>
             <div className="leading-3">
               <p className="font-semibold text-white text-xl">
-                {data.lastname}
+                {typeof data.lastname === "string" ? data.lastname : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Apellido Paterno</p>
             </div>
             <div className="leading-3">
               <p className="font-semibold text-white text-xl">
-                {data.lastname}
+                {typeof data.lastname === "string" ? data.lastname : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Apellido Materno</p>
             </div>

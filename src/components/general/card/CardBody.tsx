@@ -11,7 +11,7 @@ interface FieldDisplayConfig {
 
 interface CardProps {
   expanded: boolean;
-  data: NestedObject;
+  data: NestedObject | string;
   fieldsToShow: string[];
   fieldDisplayConfig?: FieldDisplayConfig;
   className?: string;
@@ -34,7 +34,7 @@ const CardBody: React.FC<CardProps> = ({
 }) => {
   //Gets a nested object, a string value or an undefined.
   const getNestedFieldValue = (
-    obj: NestedObject | undefined,
+    obj: NestedObject | string,
     path: string[]
   ): string | NestedObject | undefined => {
     return path.reduce<string | NestedObject | undefined>(
