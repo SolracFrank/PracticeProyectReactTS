@@ -60,16 +60,18 @@ const UserCards = () => {
         </button>
       </div>
       <div className="grid grid-cols-12 mb-2 ">
-        
         <div
-          className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white 
-          lg:h-full lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
-          col-span-12  sm:col-span-12 lg:col-span-2 
-          grid grid-cols-2  md:grid-cols-2 lg:grid-cols-1  
-        "
+          className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
+        lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
+        col-span-12 sm:col-span-12 lg:col-span-2
+        grid grid-cols-2 md:grid-cols-2 lg:grid-cols-1 p-1"
         >
-          <div className="mx-2 mt-2 flex">
-            <img className="lg:h-[150px]" src={userimg} alt="userImg" />{" "}
+          <div className="p-1 flex">
+            <img
+              className="lg:h-[180px] lg:w-[200px] xl:w-[300px] xl:h-[150px] h-[200px]"
+              src={userimg}
+              alt="userImg"
+            />{" "}
             {/*lg:h-full  */}
           </div>
 
@@ -104,7 +106,6 @@ const UserCards = () => {
           }}
           className="col-span-12 md:col-span-12 lg:col-span-10 w-full"
         />
-        
       </div>
 
       <div className="grid grid-cols-12  gap-2 mb-2 ">
