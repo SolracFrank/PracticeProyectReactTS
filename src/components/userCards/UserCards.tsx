@@ -104,7 +104,7 @@ const UserCards = () => {
             clave: { label: "Clave única", stringify: true },
             curp: { label: "CURP", stringify: true },
           }}
-          className="col-span-12 md:col-span-12 lg:col-span-10 w-full"
+          className="col-span-12 md:col-span-12 lg:col-span-10 w-full mt-2 lg:mt-0"
         />
       </div>
 
