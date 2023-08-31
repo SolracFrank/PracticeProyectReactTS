@@ -39,36 +39,38 @@ const OtherCards = () => {
     <div className="mx-10 w-full ">
       <SearchBarUser />
 
-      <div className="grid grid-cols-12 gap-1 ">
+      <div className="grid grid-cols-12 mb-2 ">
         <div
-          className="bg-blue-1000 border-solid border-px 
-        rounded-md shadow-md shadow-gray-400 border-white 
-        col-span-12  sm:col-span-12 md:col-span-12 lg:grid-cols-1 lg:col-span-3 grid md:grid-cols-2 grid-cols-2 
-        lg:h-full justify-items-center lg:justify-items-start items-center lg:items-start mx-auto "
+          className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
+        lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
+        col-span-12 sm:col-span-12 lg:col-span-2
+        grid grid-cols-2 md:grid-cols-2 lg:grid-cols-1 p-1"
         >
-          <div className="m-2 h-full flex p-2">
-            <img className="lg:h-full  " src={userimg} alt="userImg" />
+          <div className="p-1 flex">
+            <img
+              className="lg:h-[180px] lg:w-[200px] xl:w-[300px] xl:h-[150px] h-[200px]"
+              src={userimg}
+              alt="userImg"
+            />{" "}
+            {/*lg:h-full  */}
           </div>
 
-          <div className="m-3 space-y-2 ">
+          <div className="ml-2 pb-2">
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
-                {typeof data.firstname === "string"
-                  ? data.firstname
-                  : "No Data"}
+              <p className="font-semibold text-white text-lg">
+              {typeof data.firstname === "string" ? data.firstname : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Nombre /s</p>
             </div>
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
-                {typeof data.lastname === "string" ? data.lastname : "No Data"}
+              <p className="font-semibold text-white text-lg">
+              {typeof data.lastname === "string" ? data.lastname : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Apellido Paterno</p>
             </div>
             <div className="leading-3">
-              <p className="font-semibold text-white text-xl">
-                {typeof data.lastname === "string" ? data.lastname : "No Data"}
-              </p>
+              <p className="font-semibold text-white text-lg">
+              {typeof data.lastname === "string" ? data.lastname : "No Data"}              </p>
               <p className="text-blue-1100 font-light">Apellido Materno</p>
             </div>
           </div>
@@ -76,22 +78,26 @@ const OtherCards = () => {
         <Card
           title="Datos Personales"
           data={data}
-          fieldsToShow={["email", "birthDate", "phone", "website"]}
-          className="col-span-12 md:col-span-12 lg:col-span-9"
+          fieldsToShow={['id','firstname','lastname','email','birthDate','phone','website']}
+          fieldDisplayConfig={
+            {
+              
+            }
+          }
+          className="col-span-12 md:col-span-12 lg:col-span-10 w-full mt-2 lg:mt-0"
         />
       </div>
 
-      <div className="grid grid-cols-12 gap-1 min-h-[300px]">
+      <div className="grid grid-cols-12  gap-2 mb-2 ">
         <Card
           title="Somatometria"
-          data={data.login}
+          data={data.address}
           className="lg:col-span-4 col-span-12"
         />
 
         <Card
           title="Informacion Academica"
           data={data.address}
-          fieldsToShow={["stret", "suite", "city", "zipcode"]}
           className="lg:col-span-4 col-span-12"
         />
 
@@ -102,17 +108,6 @@ const OtherCards = () => {
         />
       </div>
 
-      <div className="grid grid-cols-3 gap-1">
-        <Card
-          title="Probando Checkbox"
-          data={data.otro}
-          fieldsToShow={["state"]}
-          fieldDisplayConfig={{
-            state: { label: "¿Es donador?", isCheckBox: true },
-          }}
-          className="h-fit col-span-2"
-        />
-      </div>
     </div>
   );
 };

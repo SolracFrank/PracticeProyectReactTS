@@ -59,6 +59,7 @@ const UserCards = () => {
           Buscar
         </button>
       </div>
+
       <div className="grid grid-cols-12 mb-2 ">
         <div
           className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
@@ -135,6 +136,7 @@ const UserCards = () => {
           }}
         />
       </div>
+      
     </div>
   );
 };

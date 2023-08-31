@@ -16,6 +16,11 @@ const CardBodyElement: React.FC<CardProps> = ({
   shouldStringify,
   formattedFieldName,
 }) => {
+  if(typeof fieldValue === "object")
+  {
+   fieldValue = JSON.stringify(fieldValue); 
+  }
+  console.log(fieldValue);
   if (isCheckBox) {
     const isChecked = fieldValue === "true";
     return (
@@ -36,9 +41,9 @@ const CardBodyElement: React.FC<CardProps> = ({
   return (
     <div className="text-sm grid grid-rows-1 -space-y-2">
       <span className=" font-semibold text-lg text-blue-900 ">
-        {typeof fieldValue === "object"
-          ? JSON.stringify(fieldValue)
-          : fieldValue?.toUpperCase()}
+      {typeof fieldValue === "string"
+        ? fieldValue.toUpperCase()
+        : JSON.stringify(fieldValue)}
       </span>
       <span className=" text-blue-1100 font-light">
         {shouldStringify ? label : formattedFieldName}
