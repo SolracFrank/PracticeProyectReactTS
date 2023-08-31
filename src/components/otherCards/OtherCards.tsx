@@ -1,39 +1,15 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+
 import { Card } from "../general/card";
 import SearchBarUser from "../searchBarUser/SearchBarUser";
-import { NestedObject } from "../../interfaces/Interfaces";
 import userimg from "../../assets/usuario.png";
+import {useGetData} from "../hooks/useFetch"
 
 const OtherCards = () => {
-  const [data, setData] = useState<NestedObject>({});
-  const [status, setStatus] = useState("loading");
+  const {status, data} = useGetData('https://jsonplaceholder.org/users/','1');
 
-  const idDePrueba = 5;
+  if (status === "loading") return <p>cargando...</p>;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://jsonplaceholder.org/users/${idDePrueba}`
-        );
-        setData(response.data);
-        setStatus("success");
-      } catch (error) {
-        setStatus("error");
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (status === "loading") {
-    return <p>cargando...</p>;
-  }
-
-  if (status === "error") {
-    return <p>error</p>;
-  }
+  if (status === "error") return <p>error</p>;
 
   return (
     <div className="mx-10 w-full ">
@@ -58,19 +34,22 @@ const OtherCards = () => {
           <div className="ml-2 pb-2">
             <div className="leading-3">
               <p className="font-semibold text-white text-lg">
-              {typeof data.firstname === "string" ? data.firstname : "No Data"}
+                {typeof data.firstname === "string"
+                  ? data.firstname
+                  : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Nombre /s</p>
             </div>
             <div className="leading-3">
               <p className="font-semibold text-white text-lg">
-              {typeof data.lastname === "string" ? data.lastname : "No Data"}
+                {typeof data.lastname === "string" ? data.lastname : "No Data"}
               </p>
               <p className="text-blue-1100 font-light">Apellido Paterno</p>
             </div>
             <div className="leading-3">
               <p className="font-semibold text-white text-lg">
-              {typeof data.lastname === "string" ? data.lastname : "No Data"}              </p>
+                {typeof data.lastname === "string" ? data.lastname : "No Data"}{" "}
+              </p>
               <p className="text-blue-1100 font-light">Apellido Materno</p>
             </div>
           </div>
@@ -78,12 +57,16 @@ const OtherCards = () => {
         <Card
           title="Datos Personales"
           data={data}
-          fieldsToShow={['id','firstname','lastname','email','birthDate','phone','website']}
-          fieldDisplayConfig={
-            {
-              
-            }
-          }
+          fieldsToShow={[
+            "id",
+            "firstname",
+            "lastname",
+            "email",
+            "birthDate",
+            "phone",
+            "website",
+          ]}
+          fieldDisplayConfig={{}}
           className="col-span-12 md:col-span-12 lg:col-span-10 w-full mt-2 lg:mt-0"
         />
       </div>
@@ -107,7 +90,6 @@ const OtherCards = () => {
           className="lg:col-span-4 col-span-12"
         />
       </div>
-
     </div>
   );
 };
