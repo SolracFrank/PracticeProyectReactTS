@@ -33,13 +33,13 @@ export const Card: React.FC<CardProps> = ({
   const toggleExpansion = () => {
     setExpanded(!expanded);
   };
-  data = data == undefined ? { error: "undefined" } : data;
+  data = data == undefined ? { error: "ABC" } : data;
   fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
-
+ 
   return (
     <div
       className={`flex-col px-4 py-4 border-[1px] border-solid border-gray-600 rounded-md
-    bg-white space-y-1  w-full flex-grow  text-gray-600
+    bg-white space-y-1  w-full flex-grow  text-gray-600 overflow-x-auto
    ${expanded ? "h-full" : "h-fit"} ${className}`}
     >
       <div className="-space-y-0 mb-4 group border-b-[3px] border-green-1100">

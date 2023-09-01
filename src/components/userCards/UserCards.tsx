@@ -42,8 +42,8 @@ const UserCards = () => {
   }
 
   return (
-    <div className="mx-10 w-full ">
-      <div className="flex pb-4 lg:w-[90%] ">
+    <div className="mx-10 w-full">
+      <div className="flex pb-4 lg:w-[90%]">
         <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
         <input
           className="w-full rounded-md border border-blue-900 
@@ -59,8 +59,7 @@ const UserCards = () => {
           Buscar
         </button>
       </div>
-
-      <div className="grid grid-cols-12 mb-2 ">
+      <div className="grid grid-cols-12 gap-2 ">
         <div
           className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
         lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
@@ -108,7 +107,6 @@ const UserCards = () => {
           className="col-span-12 md:col-span-12 lg:col-span-10 w-full mt-2 lg:mt-0"
         />
       </div>
-
       <div className="grid grid-cols-12  gap-2 mb-2 ">
         <Card
           title="Somatometria"
@@ -136,7 +134,6 @@ const UserCards = () => {
           }}
         />
       </div>
-      
     </div>
   );
 };
