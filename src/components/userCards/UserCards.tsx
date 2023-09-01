@@ -62,6 +62,7 @@ const UserCards = () => {
       </div>
       
       <div className="grid grid-cols-12 gap-2">
+
         <div
           className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
         col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-2 p-2
@@ -104,6 +105,7 @@ const UserCards = () => {
             </div>
           </div>
         </div>
+
         <Card
           title="Datos Personales"
           data={ldata}

@@ -33,9 +33,10 @@ export const Card: React.FC<CardProps> = ({
   const toggleExpansion = () => {
     setExpanded(!expanded);
   };
-  data = data == undefined ? { error: "ABC" } : data;
+   data = data == undefined ? { error: "El elemento no existe" } : data;
   fieldsToShow = fieldsToShow?.length === 0 ? Object.keys(data) : fieldsToShow;
  
+
   return (
     <div
       className={`flex-col px-4 py-4 border-[1px] border-solid border-gray-600 rounded-md

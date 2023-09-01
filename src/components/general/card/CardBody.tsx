@@ -49,11 +49,8 @@ const CardBody: React.FC<CardProps> = ({
       className={`grid grid-cols-1 gap-1 lg:space-y-0
       ${expanded ? "" : "hidden"}  
       ${fieldsToShow.length > 4 ? "md:grid-cols-2 lg:space-y-0" : ""} 
-      ${
-        fieldsToShow.length > 12
-          ? "sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:space-y-0"
-          : ""
-      }
+      ${fieldsToShow.length > 12? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:space-y-0" : "" }
+
       `}
     >
 
