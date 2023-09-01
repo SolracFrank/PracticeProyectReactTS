@@ -23,7 +23,7 @@ const UserCards = () => {
       console.log(error);
     }
   }, []);
-
+//
   const idDePrueba = 4;
   const getProducts = async () => {
     const response = await fetch(
@@ -43,6 +43,7 @@ const UserCards = () => {
 
   return (
     <div className="mx-10 w-full">
+      
       <div className="flex pb-4 lg:w-[90%]">
         <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
         <input
@@ -59,40 +60,47 @@ const UserCards = () => {
           Buscar
         </button>
       </div>
-      <div className="grid grid-cols-12 gap-2 ">
+      
+      <div className="grid grid-cols-12 gap-2">
         <div
           className="bg-blue-1000 border-solid border-px rounded-md shadow-md shadow-gray-400 border-white
-        lg:w-11/12 justify-items-center items-center lg:justify-items-start lg:items-start
-        col-span-12 sm:col-span-12 lg:col-span-2
-        grid grid-cols-2 md:grid-cols-2 lg:grid-cols-1 p-1"
+        col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-2 p-2
+       "
         >
-          <div className="p-1 flex">
-            <img
-              className="lg:h-[180px] lg:w-[200px] xl:w-[300px] xl:h-[150px] h-[200px]"
-              src={userimg}
-              alt="userImg"
-            />{" "}
-            {/*lg:h-full  */}
-          </div>
+          <div className="flex sm:flex-row lg:flex-col space-x-2 h-full">
+            <div className="sm:w-50 h-full w-64 md:w-56 lg:w-full">
+              <img
+                className="h-full w-full rounded"
+                src={userimg}
+                alt="userImg"
+              />{" "}
+              {/*lg:h-full  */}
+            </div>
 
-          <div className="ml-2 pb-2">
-            <div className="leading-3">
-              <p className="font-semibold text-white text-lg">
-                {data.firstname}
-              </p>
-              <p className="text-blue-1100 font-light">Nombre /s</p>
-            </div>
-            <div className="leading-3">
-              <p className="font-semibold text-white text-lg">
-                {data.lastname}
-              </p>
-              <p className="text-blue-1100 font-light">Apellido Paterno</p>
-            </div>
-            <div className="leading-3">
-              <p className="font-semibold text-white text-lg">
-                {data.lastname}
-              </p>
-              <p className="text-blue-1100 font-light">Apellido Materno</p>
+            <div
+              className="h-full flex w-full flex-col text-left 
+                  sm:flex-row sm:items-center  sm:justify-between  sm:space-x-2 sm:text-center 
+                  md:flex-row md:items-center  md:justify-between  md:space-x-2 md:text-center 
+                  lg:flex-col lg:items-start lg:align-middle lg:space-x-0 lg:text-left"
+            >
+              <div className="leading-3">
+                <p className="font-semibold text-white text-lg">
+                  {data.firstname}
+                </p>
+                <p className="text-blue-1100 font-light">Nombre /s</p>
+              </div>
+              <div className="leading-3">
+                <p className="font-semibold text-white text-lg">
+                  {data.lastname}
+                </p>
+                <p className="text-blue-1100 font-light">Apellido Paterno</p>
+              </div>
+              <div className="leading-3">
+                <p className="font-semibold text-white text-lg">
+                  {data.lastname}
+                </p>
+                <p className="text-blue-1100 font-light">Apellido Materno</p>
+              </div>
             </div>
           </div>
         </div>
@@ -104,14 +112,13 @@ const UserCards = () => {
             clave: { label: "Clave única", stringify: true },
             curp: { label: "CURP", stringify: true },
           }}
-          className="col-span-12 md:col-span-12 lg:col-span-10 w-full mt-2 lg:mt-0"
+          className="col-span-12 md:col-span-12 lg:col-span-10 w-full"
         />
-      </div>
-      <div className="grid grid-cols-12  gap-2 mb-2 ">
+
         <Card
           title="Somatometria"
           data={ldata2}
-          className="lg:col-span-4 col-span-12"
+          className="lg:col-span-4 col-span-12 sm:col-span-6 md:col-span-6"
           fieldDisplayConfig={{
             donador: { label: "Donador", stringify: true, isCheckBox: true },
           }}
@@ -120,13 +127,13 @@ const UserCards = () => {
         <Card
           title="Informacion Academica"
           data={ldata3}
-          className="lg:col-span-4 col-span-12"
+          className="lg:col-span-4 col-span-12 sm:col-span-6 md:col-span-6"
         />
 
         <Card
           title="Informacion económica"
           data={ldata4}
-          className="lg:col-span-4 col-span-12"
+          className="lg:col-span-4 col-span-12 sm:col-span-12 md:col-span-12"
           fieldDisplayConfig={{
             tieneAutos: { label: "¿Tiene Autos?", stringify: true },
             cuantos: { label: "¿Cuántos?", stringify: true },
