@@ -50,6 +50,11 @@ const CardBody: React.FC<CardProps> = ({
       ${expanded ? "" : "hidden"}  
       ${fieldsToShow.length > 4 ? "md:grid-cols-2 lg:space-y-0" : ""} 
       ${
+        fieldsToShow.length > 9
+          ? "grid-cols-1 xs:grid-cols-2 md:grid-cols-5 lg:space-y-0"
+          : ""
+      }
+      ${
         fieldsToShow.length > 12
           ? "grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:space-y-0"
           : ""
