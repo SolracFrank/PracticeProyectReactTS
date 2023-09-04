@@ -50,7 +50,7 @@ export const Card: React.FC<CardProps> = ({
           expanded={expanded}
         />
       </div>
-      {/* Contracción del área bajo la línea segun clic en svg */}
+      {/* This area will collapse  on pressing triangle icon */}
       <CardBody
         expanded={expanded}
         data={data}
