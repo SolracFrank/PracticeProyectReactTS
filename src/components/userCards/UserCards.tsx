@@ -1,7 +1,7 @@
 import { Card } from "../general/card";
 import { useQuery } from "react-query";
 import { useState, useEffect } from "react";
-import img from "../../assets/logo2.png";
+import img from "../../assets/logoProan.png";
 import userimg from "../../assets/usuario.png";
 import jsonData from "../../db.json";
 

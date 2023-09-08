@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import img from "../../assets/logo2.png";
+import img from "../../assets/logoProan.png";
 import { useGetAllData } from "../hooks/useFetch";
 
 interface searchBarProps {
@@ -52,9 +52,7 @@ const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
       setValue("");
     }
   };
-  if (allData.length === 0) {
-    return <p>Cargando...</p>;
-  }
+
   return (
     <div className="flex pb-4 lg:w-[90%] relative">
       <img className="w-12 h-10 mx-2 ml-0" src={img} alt="" />
@@ -71,15 +69,19 @@ const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
       {value.length > 0 && (
         <div className="absolute left-1 mt-10 w-full bg-white border rounded border-gray-300 shadow-md opacity-80">
           <ul>
-            {filteredData.slice(0, 5).map((user) => (
-              <li
-                key={user.id}
-                className="py-2 px-4 hover:bg-gray-100 cursor-pointer"
-                onClick={() => handleUserClick(user.id)}
-              >
-                {user.firstname + " " + user.lastname}
-              </li>
-            ))}
+            {filteredData.length > 0 ? (
+              filteredData.slice(0, 5).map((user) => (
+                <li
+                  key={user.id}
+                  className="py-2 px-4 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleUserClick(user.id)}
+                >
+                  {user.firstname + " " + user.lastname}
+                </li>
+              ))
+            ) : (
+              <p>Cargando...</p>
+            )}
           </ul>
         </div>
       )}
@@ -87,6 +89,7 @@ const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
         className="border hover:bg-gray-100 border-blue-900 rounded-md mx-2 p-2"
         type="button"
         onClick={onClick}
+        title="w"
       >
         Buscar
       </button>
