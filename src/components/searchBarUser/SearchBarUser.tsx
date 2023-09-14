@@ -1,25 +1,33 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import img from "../../assets/logoProan.png";
-import { useGetAllData } from "../hooks/useFetch";
+import { useGetDataQuery } from "../hooks/useCache";
 
 interface searchBarProps {
   SearchUser: (userId: string) => void;
 }
 interface User {
-  id: string;
-  firstname: string;
-  lastname: string;
+  personalId: string;
+  names: string;
+  lastName: string;
 }
+
+
 const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
   const [value, setValue] = useState("");
-  const [allData, setAllData] = useState<User[]>([]);
-  const { data } = useGetAllData("https://jsonplaceholder.org/users");
+  const [usersData, setUsersData] = useState<User[]>([]);
+  const { data, isLoading, isError } = useGetDataQuery({
+    api: 'https://localhost:7075/api/employees',
+    apiKey: 'usuarios',
+    cacheTime: 86400000, 
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZTlkOTkxMC02YmE3LTRkMjAtOGE2NS0wOGQ5ZTRkNTI2MzIiLCJBY3RpdmUiOiJUcnVlIiwibmJmIjoxNjk0NzA1MjQ1LCJleHAiOjE2OTQ3MDg4NDUsImlzcyI6Imh0dHA6Ly8yMDEuMTYxLjgwLjExMiIsImF1ZCI6IjUzMmE2ZjZhLWZmNDktNDU2OC04Yzk0LTQ0ZDVmYjlhYjdlNyJ9.BB9ZnbpkeIUBaMwgnpkzD6Bs5FHWMqzV0bkrTqFdc3M"
+  });
 
   useEffect(() => {
     if (data) {
-      setAllData(data);
+      setUsersData(data);
     }
   }, [data]);
+
 
   function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -30,17 +38,17 @@ const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
 
   const filteredData = useMemo(() => {
     if (value.length === 0) {
-      return allData;
+      return usersData;
     }
 
-    return allData.filter((user) =>
+    return usersData.filter((user) =>
       (
-        user.firstname.toLowerCase() +
+        user.names.toLowerCase() +
         " " +
-        user.lastname.toLowerCase()
+        user.lastName.toLowerCase()
       ).includes(value.toLowerCase())
     );
-  }, [allData, value]);
+  }, [usersData, value]);
 
   const handleUserClick = (id: string) => {
     SearchUser(id);
@@ -66,21 +74,26 @@ const SearchBarUser: React.FC<searchBarProps> = ({ SearchUser }) => {
         value={value}
         onKeyUp={handleKeyPress}
       />
-      {value.length > 0 && (
+      {value.length > 0 && !isLoading &&(
         <div className="absolute left-1 mt-10 w-full bg-white border rounded border-gray-300 shadow-md opacity-80">
           <ul>
             {filteredData.length > 0 ? (
               filteredData.slice(0, 5).map((user) => (
                 <li
-                  key={user.id}
+                  key={user.personalId}
                   className="py-2 px-4 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => handleUserClick(user.id)}
+                  onClick={() => handleUserClick(user.personalId)}
                 >
-                  {user.firstname + " " + user.lastname}
+                  {user.names + " " + user.lastName}
                 </li>
               ))
-            ) : (
-              <p>Cargando...</p>
+            ) : ( isError ? (
+              <p>Error  </p>
+            )
+              :
+              (
+                <p>Cargando...</p>
+              )
             )}
           </ul>
         </div>

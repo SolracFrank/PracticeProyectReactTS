@@ -1,26 +1,34 @@
 import { Card } from "../general/card";
-import SearchBarUser from "../searchBarUser/SearchBarUser";
+// import SearchBarUser from "../searchBarUser/SearchBarUser";
 import userimg from "../../assets/usuario.png";
-import { useGetData } from "../hooks/useFetch";
 import { useState } from "react";
+import { useGetDataQuery } from "../hooks/useCache";
 
 const OtherCards = () => {
-  const [userId, setUserId] = useState("1");
-  const { status, data } = useGetData(
-    "https://jsonplaceholder.org/users/",
-    userId
+  const [userId] = useState("00006");
+
+  const { data, isLoading, isError } = useGetDataQuery( {
+    api: 'https://localhost:7075/api/employees',
+    apiField: '/'+userId,
+    apiKey: 'usuario',
+    cacheTime: 86400000, 
+    token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZTlkOTkxMC02YmE3LTRkMjAtOGE2NS0wOGQ5ZTRkNTI2MzIiLCJBY3RpdmUiOiJUcnVlIiwibmJmIjoxNjk0NzE0NTY0LCJleHAiOjE2OTQ3MTgxNjQsImlzcyI6Imh0dHA6Ly8yMDEuMTYxLjgwLjExMiIsImF1ZCI6IjUzMmE2ZjZhLWZmNDktNDU2OC04Yzk0LTQ0ZDVmYjlhYjdlNyJ9.tSoo4VTzo-CUsEcx7-AoHE0ytlFlUxj52tSbrC__jCw'
+  }
   );
 
-  function SearchUser(userId: string) {
-    setUserId(userId);
-  }
+
+//86400000
+  // function SearchUser(userId: string) {
+  //   setUserId(userId);
+  // }
   //Forzando cambio
-  if (status === "loading") return <p>cargando...</p>;
-  if (status === "error") return <p>error</p>;
+  console.log(data);
+  if (isLoading)
+  if (isError) return <p>error</p>;
 
   return (
     <div className="mx-10 w-full ">
-      <SearchBarUser SearchUser={SearchUser} />
+      {/* <SearchBarUser SearchUser={SearchUser} /> */}
 
       <div className="grid grid-cols-12 gap-2">
         
@@ -47,15 +55,15 @@ const OtherCards = () => {
             >
               <div className="leading-3">
                 <p className="font-semibold text-white text-lg">
-                  {typeof data.firstname === "string"
-                    ? data.firstname
+                  {typeof data.names === "string"
+                    ? data.names
                     : "No Data"}
                 </p>
                 <p className="text-blue-1100 font-light">Nombre /s</p>
               </div>
               <div className="leading-3">
                 <p className="font-semibold text-white text-lg">
-                  {typeof data.lastname === "string"
+                  {typeof data.lastName === "string"
                     ? data.lastname
                     : "No Data"}
                 </p>
